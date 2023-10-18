@@ -1,6 +1,10 @@
 import React from 'react'
 import './booking.css'
 export default function Booking() {
+
+  const inputChange = ()=>{
+
+  }
   return (
     <>
       <div class="card carddesignn">
@@ -9,7 +13,7 @@ export default function Booking() {
           <form>
             <div class="row">
               <div class="col-sm mt-2">
-                <input type="text" class="form-control formstyle bg-transparent" placeholder="YOUR NAME"></input>
+                <input type="text" class="form-control formstyle bg-transparent" placeholder="YOUR NAME" onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
               <input type="email" class="form-control formstyle bg-transparent" placeholder="YOUR EMAIL"></input>

@@ -20,7 +20,7 @@ export default function AboutUs() {
       <p class="text-blk heading">
         Meet Our Creative Team.
       </p>
-      <p class="text-blk subHeading">
+      <p class="text-blk subHeading mt-1">
         ASHIF V.K-MANAGER<br></br>
         RAHUL RAJESH-ASSISTANT MANAGER<br></br>
         ABHINAND TK-FOUNDER<br></br>

@@ -57,8 +57,6 @@ class Bookingapi(GenericAPIView):
         NoofPerson=request.data.get('namNoofPersone')
 
 
-
-
         
 
 

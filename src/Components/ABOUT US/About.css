@@ -1,5 +1,24 @@
 
+@keyframes filling {
+  from{
+    background-position: center 25%;
+  }
+  to {
+    background-position: center 50%;
+  }
+}
+ 
+ 
  .text-blk {
+  
+    background-image:  url('./AboutImg/abn.jpg');
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color:  #FFFFFF;
+    padding-top: 20px;
+    font-size: 170px;
+    font-family: 'Bungee', cursive;
+    animation: filling 3s ease forwards;
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
@@ -12,8 +31,11 @@
     margin-bottom: 40px;
     margin-left: 0px;
   }
+    
+  
   
   .responsive-container-block {
+    
     min-height: 75px;
     height: fit-content;
     width: 100%;

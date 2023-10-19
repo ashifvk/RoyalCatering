@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './booking.css'
 export default function Booking() {
 
-  const inputChange = ()=>{
+  const log_id=localStorage.getItem('RoyalCatering_logId')
+  // console.log(log_id)
 
+  const [state,setState] = useState({})
+
+  const inputChange = (event)=>{
+        const {name,value} = event.target
+        setState({...state,[name]:value})
+  }
+
+  const submit = (event)=>{
+    event.preventDefault()
+  if(log_id){
+    console.log(state);
+  }
+    else{
+      window.alert('please login')
+
+    }
   }
   return (
     <>
@@ -13,29 +30,29 @@ export default function Booking() {
           <form>
             <div class="row">
               <div class="col-sm mt-2">
-                <input type="text" class="form-control formstyle bg-transparent" placeholder="YOUR NAME" onChange={inputChange}></input>
+                <input type="text" class="form-control formstyle bg-transparent" name='name' placeholder="YOUR NAME" onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="email" class="form-control formstyle bg-transparent" placeholder="YOUR EMAIL"></input>
+              <input type="email" class="form-control formstyle bg-transparent" name='email' placeholder="YOUR EMAIL" onChange={inputChange}></input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm mt-2">
-              <input type="tel" class="form-control formstyle bg-transparent" placeholder="PHONE NUMBER"></input>
+              <input type="tel" class="form-control formstyle bg-transparent" name='contact' placeholder="PHONE NUMBER" onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="time" class="form-control formstyle bg-transparent" placeholder="TIME"></input>
+              <input type="time" class="form-control formstyle bg-transparent" name='time' placeholder="TIME" onChange={inputChange}></input>
               </div>
             </div>
             <div class="row">
               <div class="col-sm mt-2">
-              <input type="date" class="form-control formstyle bg-transparent" placeholder="DATE"></input>
+              <input type="date" class="form-control formstyle bg-transparent" placeholder="DATE" name='date' onChange={inputChange}></input>
               </div>
               <div class="col-sm mt-2">
-              <input type="number" class="form-control formstyle bg-transparent" placeholder="NO. OF PERSONS"></input>
+              <input type="number" class="form-control formstyle bg-transparent" name='NoOfPerson' placeholder="NO. OF PERSONS" onChange={inputChange}></input>
               </div>
             </div>
-            <button type="submit" class="btn btn-light formbutton">SUBMIT</button>
+            <button  class="btn btn-light formbutton" onClick={submit}>SUBMIT</button>
           </form>
         </div>
       </div>

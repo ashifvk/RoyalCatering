@@ -12,18 +12,17 @@ class Registerapi(GenericAPIView):
         name=request.data.get('name')
         contact=request.data.get('contact')
         email=request.data.get('email')
-        username=request.data.get('username')
         password=request.data.get('password')
         role='user'
         log_id=''
-        if(login.objects.filter(username=username)):
+        if(login.objects.filter(email=email)):
             return Response({'message':'duplicate username found'},status=status.HTTP_400_BAD_REQUEST)
         else:
-            serializer_login=self.serializer_class(data={'username':username,'password':password,'role':role})
+            serializer_login=self.serializer_class(data={'email':email,'password':password,'role':role})
         if serializer_login.is_valid():
             log=serializer_login.save()
             log_id=log.id
-        serializer_reg=self.serializer_class_reg(data={'name':name,'contact':contact,'email':email,'log_id':log_id})
+        serializer_reg=self.serializer_class_reg(data={'name':name,'contact':contact,'log_id':log_id})
         if serializer_reg.is_valid():
              serializer_reg.save()
              return Response({'data':serializer_reg.data,'message':'Registered success','success':True},status=status.HTTP_201_CREATED)
@@ -33,9 +32,9 @@ class Registerapi(GenericAPIView):
 class loginAPI(GenericAPIView):
     serializer_class=loginSerializer
     def post(self,request):
-        username=request.data.get('username')
+        email=request.data.get('email')
         password=request.data.get('password')
-        logreg=login.objects.filter(username=username,password=password)
+        logreg=login.objects.filter(email=email,password=password)
         if (logreg.count()>0):
             serializer=loginSerializer(logreg,many=True)
             for i in serializer.data:
@@ -44,7 +43,7 @@ class loginAPI(GenericAPIView):
             regdata=UserRegister.objects.all().filter(log_id=l_id).values()
             for i in regdata:
                 user_id=i['id']
-            return Response({'data':{'username':username,'log_id':l_id,'role':role,'user_id':user_id},'message':'success','success':True},status=status.HTTP_201_CREATED)
+            return Response({'data':{'email':email,'log_id':l_id,'role':role,'user_id':user_id},'message':'success','success':True},status=status.HTTP_201_CREATED)
         return Response({'data':'invalid credentials','success':False},status=status.HTTP_400_BAD_REQUEST)
     
 class Bookingapi(GenericAPIView):
